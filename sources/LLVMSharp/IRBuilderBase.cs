@@ -26,7 +26,7 @@ public unsafe class IRBuilderBase : IEquatable<IRBuilderBase>
         }
     }
 
-    public static bool operator ==(IRBuilderBase? left, IRBuilderBase? right) => ReferenceEquals(left, right) || (left?.Handle == right?.Handle);
+    public static bool operator ==(IRBuilderBase? left, IRBuilderBase? right) => ReferenceEquals(left, right) || left?.Handle == right?.Handle;
 
     public static bool operator !=(IRBuilderBase? left, IRBuilderBase? right) => !(left == right);
 
@@ -40,7 +40,7 @@ public unsafe class IRBuilderBase : IEquatable<IRBuilderBase>
         return Context.GetOrCreate<GlobalVariable>(handle);
     }
 
-    public override bool Equals(object? obj) => (obj is IRBuilderBase other) && Equals(other);
+    public override bool Equals(object? obj) => obj is IRBuilderBase other && Equals(other);
 
     public bool Equals(IRBuilderBase? other) => this == other;
 

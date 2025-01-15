@@ -260,4 +260,36 @@ public unsafe partial struct LLVMTypeRef(IntPtr handle) : IEquatable<LLVMTypeRef
     }
 
     public override readonly string ToString() => (Handle != IntPtr.Zero) ? PrintToString() : string.Empty;
+
+    public readonly uint GetPrimitiveSizeInBits()
+    {
+        return Kind switch
+        {
+            LLVMTypeKind.LLVMHalfTypeKind or LLVMTypeKind.LLVMBFloatTypeKind => 16,
+            LLVMTypeKind.LLVMFloatTypeKind => 32,
+            LLVMTypeKind.LLVMDoubleTypeKind => 64,
+            LLVMTypeKind.LLVMX86_FP80TypeKind => 80,
+            LLVMTypeKind.LLVMFP128TypeKind or LLVMTypeKind.LLVMPPC_FP128TypeKind => 128,
+            LLVMTypeKind.LLVMX86_AMXTypeKind => 8192,
+            LLVMTypeKind.LLVMIntegerTypeKind => IntWidth,
+            LLVMTypeKind.LLVMVectorTypeKind => VectorSize * ElementType.GetPrimitiveSizeInBits(),
+            _ => throw new ArgumentOutOfRangeException(nameof(Kind), Kind, null)
+        };
+    }
+
+    public readonly uint GetScalarSizeInBits() => GetPrimitiveSizeInBits();
+
+    public readonly bool IsPtrOrPtrVector() => Kind switch
+    {
+        LLVMTypeKind.LLVMPointerTypeKind => true,
+        LLVMTypeKind.LLVMVectorTypeKind => ElementType.Kind == LLVMTypeKind.LLVMPointerTypeKind,
+        _ => false
+    };
+
+    public readonly bool IsIntOrIntVector() => Kind switch
+    {
+        LLVMTypeKind.LLVMIntegerTypeKind => true,
+        LLVMTypeKind.LLVMVectorTypeKind => ElementType.Kind == LLVMTypeKind.LLVMIntegerTypeKind,
+        _ => false
+    };
 }

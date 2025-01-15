@@ -1,12 +1,29 @@
 // Copyright (c) .NET Foundation and Contributors. All Rights Reserved. Licensed under the MIT License (MIT). See License.md in the repository root for more information.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LLVMSharp.Interop;
 
 public unsafe partial struct LLVMBasicBlockRef(IntPtr handle) : IEquatable<LLVMBasicBlockRef>
 {
     public IntPtr Handle = handle;
+
+    public readonly string Name
+    {
+        get
+        {
+            if (Handle == IntPtr.Zero)
+            {
+                return string.Empty;
+            }
+
+            var pStr = LLVM.GetBasicBlockName(this);
+
+            return pStr == null ? string.Empty : SpanExtensions.AsString(pStr);
+        }
+    }
 
     public readonly LLVMValueRef FirstInstruction => (Handle != IntPtr.Zero) ? LLVM.GetFirstInstruction(this) : default;
 
@@ -97,4 +114,34 @@ public unsafe partial struct LLVMBasicBlockRef(IntPtr handle) : IEquatable<LLVMB
     public readonly void RemoveFromParent() => LLVM.RemoveBasicBlockFromParent(this);
 
     public override readonly string ToString() => (Handle != IntPtr.Zero) ? PrintToString() : string.Empty;
+
+    public readonly IEnumerable<LLVMValueRef> EnumerateInstructions()
+    {
+        // Get the first global within the module.
+        var next = FirstInstruction;
+        while (true)
+        {
+            // Exit if there are no more elements to yield.
+            if (next == null)
+            {
+                yield break;
+            }
+
+            // Yield the next global.
+            yield return next;
+
+            if (next == LastInstruction)
+            {
+                yield break;
+            }
+
+            // Set up the next global for iteration.
+            next = next.NextInstruction;
+        }
+    }
+
+    public readonly int CountInstructions()
+    {
+        return EnumerateInstructions().Count();
+    }
 }

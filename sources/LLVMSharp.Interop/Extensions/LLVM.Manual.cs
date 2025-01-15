@@ -9,349 +9,349 @@ namespace LLVMSharp.Interop;
 
 public static unsafe partial class LLVM
 {
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAArch64TargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAArch64TargetInfo", ExactSpelling = true)]
     public static extern void InitializeAArch64TargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAMDGPUTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAMDGPUTargetInfo", ExactSpelling = true)]
     public static extern void InitializeAMDGPUTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeARMTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeARMTargetInfo", ExactSpelling = true)]
     public static extern void InitializeARMTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAVRTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAVRTargetInfo", ExactSpelling = true)]
     public static extern void InitializeAVRTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeBPFTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeBPFTargetInfo", ExactSpelling = true)]
     public static extern void InitializeBPFTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeHexagonTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeHexagonTargetInfo", ExactSpelling = true)]
     public static extern void InitializeHexagonTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLanaiTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLanaiTargetInfo", ExactSpelling = true)]
     public static extern void InitializeLanaiTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLoongArchTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLoongArchTargetInfo", ExactSpelling = true)]
     public static extern void InitializeLoongArchTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMipsTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMipsTargetInfo", ExactSpelling = true)]
     public static extern void InitializeMipsTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMSP430TargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMSP430TargetInfo", ExactSpelling = true)]
     public static extern void InitializeMSP430TargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeNVPTXTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeNVPTXTargetInfo", ExactSpelling = true)]
     public static extern void InitializeNVPTXTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializePowerPCTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializePowerPCTargetInfo", ExactSpelling = true)]
     public static extern void InitializePowerPCTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeRISCVTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeRISCVTargetInfo", ExactSpelling = true)]
     public static extern void InitializeRISCVTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSparcTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSparcTargetInfo", ExactSpelling = true)]
     public static extern void InitializeSparcTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSPIRVTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSPIRVTargetInfo", ExactSpelling = true)]
     public static extern void InitializeSPIRVTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSystemZTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSystemZTargetInfo", ExactSpelling = true)]
     public static extern void InitializeSystemZTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeVETargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeVETargetInfo", ExactSpelling = true)]
     public static extern void InitializeVETargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeWebAssemblyTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeWebAssemblyTargetInfo", ExactSpelling = true)]
     public static extern void InitializeWebAssemblyTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeX86TargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeX86TargetInfo", ExactSpelling = true)]
     public static extern void InitializeX86TargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeXCoreTargetInfo", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeXCoreTargetInfo", ExactSpelling = true)]
     public static extern void InitializeXCoreTargetInfo();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAArch64Target", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAArch64Target", ExactSpelling = true)]
     public static extern void InitializeAArch64Target();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAMDGPUTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAMDGPUTarget", ExactSpelling = true)]
     public static extern void InitializeAMDGPUTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeARMTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeARMTarget", ExactSpelling = true)]
     public static extern void InitializeARMTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAVRTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAVRTarget", ExactSpelling = true)]
     public static extern void InitializeAVRTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeBPFTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeBPFTarget", ExactSpelling = true)]
     public static extern void InitializeBPFTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeHexagonTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeHexagonTarget", ExactSpelling = true)]
     public static extern void InitializeHexagonTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLanaiTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLanaiTarget", ExactSpelling = true)]
     public static extern void InitializeLanaiTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLoongArchTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLoongArchTarget", ExactSpelling = true)]
     public static extern void InitializeLoongArchTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMipsTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMipsTarget", ExactSpelling = true)]
     public static extern void InitializeMipsTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMSP430Target", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMSP430Target", ExactSpelling = true)]
     public static extern void InitializeMSP430Target();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeNVPTXTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeNVPTXTarget", ExactSpelling = true)]
     public static extern void InitializeNVPTXTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializePowerPCTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializePowerPCTarget", ExactSpelling = true)]
     public static extern void InitializePowerPCTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeRISCVTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeRISCVTarget", ExactSpelling = true)]
     public static extern void InitializeRISCVTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSparcTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSparcTarget", ExactSpelling = true)]
     public static extern void InitializeSparcTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSPIRVTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSPIRVTarget", ExactSpelling = true)]
     public static extern void InitializeSPIRVTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSystemZTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSystemZTarget", ExactSpelling = true)]
     public static extern void InitializeSystemZTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeVETarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeVETarget", ExactSpelling = true)]
     public static extern void InitializeVETarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeWebAssemblyTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeWebAssemblyTarget", ExactSpelling = true)]
     public static extern void InitializeWebAssemblyTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeX86Target", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeX86Target", ExactSpelling = true)]
     public static extern void InitializeX86Target();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeXCoreTarget", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeXCoreTarget", ExactSpelling = true)]
     public static extern void InitializeXCoreTarget();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAArch64TargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAArch64TargetMC", ExactSpelling = true)]
     public static extern void InitializeAArch64TargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAMDGPUTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAMDGPUTargetMC", ExactSpelling = true)]
     public static extern void InitializeAMDGPUTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeARMTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeARMTargetMC", ExactSpelling = true)]
     public static extern void InitializeARMTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAVRTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAVRTargetMC", ExactSpelling = true)]
     public static extern void InitializeAVRTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeBPFTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeBPFTargetMC", ExactSpelling = true)]
     public static extern void InitializeBPFTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeHexagonTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeHexagonTargetMC", ExactSpelling = true)]
     public static extern void InitializeHexagonTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLanaiTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLanaiTargetMC", ExactSpelling = true)]
     public static extern void InitializeLanaiTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLoongArchTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLoongArchTargetMC", ExactSpelling = true)]
     public static extern void InitializeLoongArchTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMipsTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMipsTargetMC", ExactSpelling = true)]
     public static extern void InitializeMipsTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMSP430TargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMSP430TargetMC", ExactSpelling = true)]
     public static extern void InitializeMSP430TargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeNVPTXTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeNVPTXTargetMC", ExactSpelling = true)]
     public static extern void InitializeNVPTXTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializePowerPCTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializePowerPCTargetMC", ExactSpelling = true)]
     public static extern void InitializePowerPCTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeRISCVTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeRISCVTargetMC", ExactSpelling = true)]
     public static extern void InitializeRISCVTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSparcTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSparcTargetMC", ExactSpelling = true)]
     public static extern void InitializeSparcTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSPIRVTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSPIRVTargetMC", ExactSpelling = true)]
     public static extern void InitializeSPIRVTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSystemZTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSystemZTargetMC", ExactSpelling = true)]
     public static extern void InitializeSystemZTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeVETargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeVETargetMC", ExactSpelling = true)]
     public static extern void InitializeVETargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeWebAssemblyTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeWebAssemblyTargetMC", ExactSpelling = true)]
     public static extern void InitializeWebAssemblyTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeX86TargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeX86TargetMC", ExactSpelling = true)]
     public static extern void InitializeX86TargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeXCoreTargetMC", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeXCoreTargetMC", ExactSpelling = true)]
     public static extern void InitializeXCoreTargetMC();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAArch64AsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAArch64AsmPrinter", ExactSpelling = true)]
     public static extern void InitializeAArch64AsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAMDGPUAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAMDGPUAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeAMDGPUAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeARMAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeARMAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeARMAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAVRAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAVRAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeAVRAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeBPFAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeBPFAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeBPFAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeHexagonAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeHexagonAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeHexagonAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLanaiAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLanaiAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeLanaiAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLoongArchAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLoongArchAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeLoongArchAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMipsAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMipsAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeMipsAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMSP430AsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMSP430AsmPrinter", ExactSpelling = true)]
     public static extern void InitializeMSP430AsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeNVPTXAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeNVPTXAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeNVPTXAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializePowerPCAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializePowerPCAsmPrinter", ExactSpelling = true)]
     public static extern void InitializePowerPCAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeRISCVAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeRISCVAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeRISCVAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSparcAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSparcAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeSparcAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSPIRVAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSPIRVAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeSPIRVAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSystemZAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSystemZAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeSystemZAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeVEAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeVEAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeVEAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeWebAssemblyAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeWebAssemblyAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeWebAssemblyAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeX86AsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeX86AsmPrinter", ExactSpelling = true)]
     public static extern void InitializeX86AsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeXCoreAsmPrinter", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeXCoreAsmPrinter", ExactSpelling = true)]
     public static extern void InitializeXCoreAsmPrinter();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAArch64AsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAArch64AsmParser", ExactSpelling = true)]
     public static extern void InitializeAArch64AsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAMDGPUAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAMDGPUAsmParser", ExactSpelling = true)]
     public static extern void InitializeAMDGPUAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeARMAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeARMAsmParser", ExactSpelling = true)]
     public static extern void InitializeARMAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAVRAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAVRAsmParser", ExactSpelling = true)]
     public static extern void InitializeAVRAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeBPFAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeBPFAsmParser", ExactSpelling = true)]
     public static extern void InitializeBPFAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeHexagonAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeHexagonAsmParser", ExactSpelling = true)]
     public static extern void InitializeHexagonAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLanaiAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLanaiAsmParser", ExactSpelling = true)]
     public static extern void InitializeLanaiAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLoongArchAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLoongArchAsmParser", ExactSpelling = true)]
     public static extern void InitializeLoongArchAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMipsAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMipsAsmParser", ExactSpelling = true)]
     public static extern void InitializeMipsAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMSP430AsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMSP430AsmParser", ExactSpelling = true)]
     public static extern void InitializeMSP430AsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializePowerPCAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializePowerPCAsmParser", ExactSpelling = true)]
     public static extern void InitializePowerPCAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeRISCVAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeRISCVAsmParser", ExactSpelling = true)]
     public static extern void InitializeRISCVAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSparcAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSparcAsmParser", ExactSpelling = true)]
     public static extern void InitializeSparcAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSystemZAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSystemZAsmParser", ExactSpelling = true)]
     public static extern void InitializeSystemZAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeVEAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeVEAsmParser", ExactSpelling = true)]
     public static extern void InitializeVEAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeWebAssemblyAsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeWebAssemblyAsmParser", ExactSpelling = true)]
     public static extern void InitializeWebAssemblyAsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeX86AsmParser", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeX86AsmParser", ExactSpelling = true)]
     public static extern void InitializeX86AsmParser();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAArch64Disassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAArch64Disassembler", ExactSpelling = true)]
     public static extern void InitializeAArch64Disassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAMDGPUDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAMDGPUDisassembler", ExactSpelling = true)]
     public static extern void InitializeAMDGPUDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeARMDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeARMDisassembler", ExactSpelling = true)]
     public static extern void InitializeARMDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeAVRDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeAVRDisassembler", ExactSpelling = true)]
     public static extern void InitializeAVRDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeBPFDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeBPFDisassembler", ExactSpelling = true)]
     public static extern void InitializeBPFDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeHexagonDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeHexagonDisassembler", ExactSpelling = true)]
     public static extern void InitializeHexagonDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLanaiDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLanaiDisassembler", ExactSpelling = true)]
     public static extern void InitializeLanaiDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeLoongArchDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeLoongArchDisassembler", ExactSpelling = true)]
     public static extern void InitializeLoongArchDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMipsDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMipsDisassembler", ExactSpelling = true)]
     public static extern void InitializeMipsDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeMSP430Disassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeMSP430Disassembler", ExactSpelling = true)]
     public static extern void InitializeMSP430Disassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializePowerPCDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializePowerPCDisassembler", ExactSpelling = true)]
     public static extern void InitializePowerPCDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeRISCVDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeRISCVDisassembler", ExactSpelling = true)]
     public static extern void InitializeRISCVDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSparcDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSparcDisassembler", ExactSpelling = true)]
     public static extern void InitializeSparcDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeSystemZDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeSystemZDisassembler", ExactSpelling = true)]
     public static extern void InitializeSystemZDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeVEDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeVEDisassembler", ExactSpelling = true)]
     public static extern void InitializeVEDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeWebAssemblyDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeWebAssemblyDisassembler", ExactSpelling = true)]
     public static extern void InitializeWebAssemblyDisassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeX86Disassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeX86Disassembler", ExactSpelling = true)]
     public static extern void InitializeX86Disassembler();
 
-    [DllImport("libLLVM", CallingConvention = CallingConvention.Cdecl, EntryPoint = "LLVMInitializeXCoreDisassembler", ExactSpelling = true)]
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInitializeXCoreDisassembler", ExactSpelling = true)]
     public static extern void InitializeXCoreDisassembler();
 
     [return: NativeTypeName("LLVMBool")]

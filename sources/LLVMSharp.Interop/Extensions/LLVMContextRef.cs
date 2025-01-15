@@ -276,4 +276,9 @@ public unsafe partial struct LLVMContextRef(IntPtr handle) : IDisposable, IEquat
             return result == 0;
         }
     }
+
+    public readonly LLVMTypeRef GetPtrType(uint addressSpace = 0) => LLVM.PointerTypeInContext(this, addressSpace);
+
+    public readonly LLVMValueRef GetFalse() => LLVMValueRef.CreateConstInt(Int1Type, 0);
+    public readonly LLVMValueRef GetTrue() => LLVMValueRef.CreateConstInt(Int1Type, 1);
 }
