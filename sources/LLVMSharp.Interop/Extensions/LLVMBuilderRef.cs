@@ -1,6 +1,9 @@
 // Copyright (c) .NET Foundation and Contributors. All Rights Reserved. Licensed under the MIT License (MIT). See License.md in the repository root for more information.
 
 using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
 
 namespace LLVMSharp.Interop;
 
@@ -105,6 +108,14 @@ public unsafe partial struct LLVMBuilderRef(IntPtr handle) : IDisposable, IEquat
 
     public readonly LLVMValueRef BuildBinOp(LLVMOpcode Op, LLVMValueRef LHS, LLVMValueRef RHS, ReadOnlySpan<char> Name)
     {
+        if (LHS.TypeOf.Kind == LLVMTypeKind.LLVMIntegerTypeKind && RHS.TypeOf.Kind == LLVMTypeKind.LLVMIntegerTypeKind)
+        {
+            if (LHS.TypeOf.IntWidth != RHS.TypeOf.IntWidth)
+            {
+                Debugger.Break();
+            }
+        }
+
         using var marshaledName = new MarshaledString(Name);
         return LLVM.BuildBinOp(this, Op, LHS, RHS, marshaledName);
     }
@@ -746,4 +757,128 @@ public unsafe partial struct LLVMBuilderRef(IntPtr handle) : IDisposable, IEquat
     public readonly void SetInstDebugLocation(LLVMValueRef Inst) => LLVM.SetInstDebugLocation(this, Inst);
 
     public override readonly string ToString() => $"{nameof(LLVMBuilderRef)}: {Handle:X}";
+
+    public readonly LLVMValueRef BuildBitOrPointerCast(LLVMValueRef value, LLVMTypeRef destType, string name = "")
+    {
+        if (value.TypeOf == destType)
+        {
+            return value;
+        }
+
+        if (value.TypeOf.IsPtrOrPtrVector() && destType.IsIntOrIntVector())
+        {
+            return BuildPtrToInt(value, destType, name);
+        }
+
+        if (value.TypeOf.IsIntOrIntVector() && destType.IsPtrOrPtrVector())
+        {
+            return BuildIntToPtr(value, destType, name);
+        }
+
+        // HACK: This is needed because LLVM-C doesn't perform automatic folding of ints.
+        if (value.TypeOf.Kind == LLVMTypeKind.LLVMIntegerTypeKind && destType.Kind == LLVMTypeKind.LLVMIntegerTypeKind)
+        {
+            return BuildZExtOrTrunc(value, destType, name);
+        }
+
+        return BuildBitCast(value, destType, name);
+    }
+
+    public readonly LLVMValueRef BuildZExtOrTrunc(LLVMValueRef value, LLVMTypeRef destType, string name = "")
+    {
+        if (!value.TypeOf.IsIntOrIntVector())
+        {
+            throw new ArgumentException("Value must be an integer or integer vector type.", nameof(value));
+        }
+
+        if (!destType.IsIntOrIntVector())
+        {
+            throw new ArgumentException("Destination type must be an integer or integer vector type.", nameof(destType));
+        }
+
+        if (value.TypeOf.GetScalarSizeInBits() < destType.GetScalarSizeInBits())
+        {
+            return BuildZExt(value, destType, name);
+        }
+
+        if (value.TypeOf.GetScalarSizeInBits() > destType.GetScalarSizeInBits())
+        {
+            return BuildTrunc(value, destType, name);
+        }
+
+        return value;
+    }
+
+    private static string MapTypeToString(LLVMContextRef context,LLVMTypeRef type)
+    {
+        if (type == context.VoidType)
+        {
+            return string.Empty;
+        }
+
+        if (type == context.Int1Type)
+        {
+            return ".i1";
+        }
+
+        if (type == context.Int8Type)
+        {
+            return ".i8";
+        }
+
+        if (type == context.Int16Type)
+        {
+            return ".i16";
+        }
+
+        if (type == context.Int32Type)
+        {
+            return ".i32";
+        }
+
+        if (type == context.Int64Type)
+        {
+            return ".i64";
+        }
+
+        if (type == context.FloatType)
+        {
+            return ".f32";
+        }
+
+        if (type == context.DoubleType)
+        {
+            return ".f64";
+        }
+
+        if (type == context.X86FP80Type)
+        {
+            return ".f80";
+        }
+
+        if (type == context.FP128Type)
+        {
+            return ".f128";
+        }
+
+        if (type == context.GetPtrType())
+        {
+            return ".p0";
+        }
+
+        throw new NotImplementedException("Unsupported intrinsic type.");
+    }
+
+    public readonly LLVMValueRef BuildCallIntrinsic(string intrinsicName, LLVMTypeRef retTy, LLVMValueRef[] args)
+    {
+        var module = InsertBlock.Parent.GlobalParent;
+        var context = module.Context;
+
+        var name = new StringBuilder(intrinsicName);
+        _ = name.Append(MapTypeToString(context, retTy));
+
+        var func = module.GetOrInsertIntrinsic(name.ToString(), retTy,
+            args.Select(x => x.TypeOf).ToArray());
+        return BuildCall2(func.GetGlobalValueType(), func, args);
+    }
 }

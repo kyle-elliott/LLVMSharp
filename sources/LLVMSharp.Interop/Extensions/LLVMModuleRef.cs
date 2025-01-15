@@ -1,7 +1,11 @@
 // Copyright (c) .NET Foundation and Contributors. All Rights Reserved. Licensed under the MIT License (MIT). See License.md in the repository root for more information.
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace LLVMSharp.Interop;
 
@@ -426,6 +430,29 @@ public unsafe partial struct LLVMModuleRef(IntPtr handle) : IDisposable, IEquata
         }
     }
 
+    public static bool TryLoadFromFile(LLVMContextRef C, string Path, out string OutMessage, out LLVMModuleRef module) => TryLoadFromFile(C, Path.AsSpan(), out OutMessage, out module);
+
+    public static bool TryLoadFromFile(LLVMContextRef C, ReadOnlySpan<char> Path, out string OutMessage, out LLVMModuleRef module)
+    {
+        sbyte* pMessage = null;
+        using var marshaledPath = new MarshaledString(Path);
+        module = LLVM.LoadModuleFromFile(C, marshaledPath, &pMessage);
+
+        OutMessage = pMessage == null ? string.Empty : SpanExtensions.AsString(pMessage);
+
+        return module != null;
+    }
+
+    public static LLVMModuleRef LoadFromFile(LLVMContextRef C, string Path)
+    {
+        if (!TryLoadFromFile(C, Path, out string Message, out LLVMModuleRef module))
+        {
+            throw new ExternalException(Message);
+        }
+
+        return module;
+    }
+
     public readonly int WriteBitcodeToFile(string Path) => WriteBitcodeToFile(Path.AsSpan());
 
     public readonly int WriteBitcodeToFile(ReadOnlySpan<char> Path)
@@ -439,4 +466,51 @@ public unsafe partial struct LLVMModuleRef(IntPtr handle) : IDisposable, IEquata
     public readonly int WriteBitcodeToFileHandle(int Handle) => LLVM.WriteBitcodeToFileHandle(this, Handle);
 
     public readonly LLVMMemoryBufferRef WriteBitcodeToMemoryBuffer() => LLVM.WriteBitcodeToMemoryBuffer(this);
+
+    public readonly Task WriteToLlFile(string path, CancellationToken token = default)
+    {
+        return File.WriteAllTextAsync(path, PrintToString(), token);
+    }
+
+    public readonly LLVMTypeRef GetPtrType(uint addressSpace = 0) => Context.GetPtrType(addressSpace);
+
+    public readonly LLVMValueRef GetOrInsertIntrinsic(string name, LLVMTypeRef returnType, LLVMTypeRef[] paramTypes)
+    {
+        var intrinsic = GetNamedFunction(name);
+        if (intrinsic.Handle != IntPtr.Zero)
+        {
+            return intrinsic;
+        }
+
+        var functionType = LLVMTypeRef.CreateFunction(returnType, paramTypes);
+        intrinsic = AddFunction(name, functionType);
+        intrinsic.Linkage = LLVMLinkage.LLVMExternalLinkage;
+
+        return intrinsic;
+    }
+
+    public readonly IEnumerable<LLVMValueRef> EnumerateFunctions()
+    {
+        // Get the first function within the module.
+        var next = FirstFunction;
+        while (true)
+        {
+            // Exit if there are no more elements to yield.
+            if (next == null)
+            {
+                yield break;
+            }
+
+            // Yield the next function.
+            yield return next;
+
+            // Set up the next function for iteration.
+            next = next.NextFunction;
+        }
+    }
+
+    public readonly int LinkModules(LLVMModuleRef other)
+    {
+        return LLVM.LinkModules2(this, other);
+    }
 }

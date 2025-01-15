@@ -1,6 +1,8 @@
 // Copyright (c) .NET Foundation and Contributors. All Rights Reserved. Licensed under the MIT License (MIT). See License.md in the repository root for more information.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using static LLVMSharp.Interop.LLVMTailCallKind;
 
 namespace LLVMSharp.Interop;
@@ -565,6 +567,8 @@ public unsafe partial struct LLVMValueRef(IntPtr handle) : IEquatable<LLVMValueR
         }
     }
 
+    public readonly LLVMValueRef GetCalledFunction() => (IsACallInst != null) ? LLVM.GetCalledFunction(this) : default;
+
     public readonly LLVMThreadLocalMode ThreadLocalMode
     {
         get
@@ -1074,4 +1078,120 @@ public unsafe partial struct LLVMValueRef(IntPtr handle) : IEquatable<LLVMValueR
     public readonly void ViewFunctionCFG() => LLVM.ViewFunctionCFG(this);
 
     public readonly void ViewFunctionCFGOnly() => LLVM.ViewFunctionCFGOnly(this);
+
+    public readonly void EliminateUnreachableBlocks()
+    {
+        if (IsAFunction == null)
+        {
+            throw new InvalidOperationException("Value is not a function");
+        }
+
+        LLVM.EliminateUnreachableBlocks(this);
+    }
+
+    public readonly void InlineCall()
+    {
+        if (IsACallInst == null)
+        {
+            throw new InvalidOperationException("Value is not a call instruction");
+        }
+
+        LLVM.InlineCall(this);
+    }
+
+    public readonly void InlineFunction()
+    {
+        if (IsAFunction == null)
+        {
+            throw new InvalidOperationException("Value is not a function");
+        }
+
+        LLVM.InlineFunction(this);
+    }
+
+    public readonly void AddAttributesAtIndex(LLVMAttributeIndex idx, LLVMAttributeRef[] refs) => AddAttributesAtIndex(idx, refs.AsSpan());
+
+    public readonly void AddAttributesAtIndex(LLVMAttributeIndex idx, ReadOnlySpan<LLVMAttributeRef> refs)
+    {
+        foreach (var attr in refs)
+        {
+            AddAttributeAtIndex(idx, attr);
+        }
+    }
+
+    public readonly LLVMTypeRef GetGlobalValueType() => (IsAGlobalValue != null) ? LLVM.GlobalGetValueType(this) : null;
+
+    public readonly IEnumerable<LLVMBasicBlockRef> EnumerateBlocks()
+    {
+        // Get the first global within the module.
+        var next = FirstBasicBlock;
+        while (true)
+        {
+            // Exit if there are no more elements to yield.
+            if (next == null)
+            {
+                yield break;
+            }
+
+            // Yield the next global.
+            yield return next;
+
+            if (next == LastBasicBlock)
+            {
+                yield break;
+            }
+
+            // Set up the next global for iteration.
+            next = next.Next;
+        }
+    }
+
+    public readonly IEnumerable<LLVMValueRef> EnumerateInstructions()
+    {
+        return EnumerateBlocks().SelectMany(x => x.EnumerateInstructions());
+    }
+
+    public readonly int CountInstructions()
+    {
+        return EnumerateBlocks().Aggregate(0, (acc, block) => acc + block.CountInstructions());
+    }
+
+    public readonly LLVMValueRef[] GetCallers()
+    {
+        if (IsAFunction == null)
+        {
+            return [];
+        }
+
+        var dest = new LLVMValueRef[LLVM.FunctionNumCallers(this)];
+
+        fixed (LLVMValueRef* pDest = dest)
+        {
+            LLVM.FunctionCallersOf(this, (LLVMOpaqueValue**)pDest);
+        }
+
+        return dest;
+    }
+
+    public readonly LLVMValueRef[] GetUsers()
+    {
+        var dest = new LLVMValueRef[LLVM.NumUsers(this)];
+
+        fixed (LLVMValueRef* pDest = dest)
+        {
+            LLVM.UsersOf(this, (LLVMOpaqueValue**)pDest);
+        }
+
+        return dest;
+    }
+
+    public readonly LLVMValueRef FunctionClone()
+    {
+        if (IsAFunction == null)
+        {
+            throw new InvalidOperationException("Value is not a function");
+        }
+
+        return LLVM.FunctionClone(this);
+    }
 }

@@ -47,11 +47,11 @@ public sealed class DataLayout(ReadOnlySpan<char> stringRep) : IEquatable<DataLa
         return Handle.PreferredAlignmentOfGlobal(value.Handle);
     }
 
-    public static bool operator ==(DataLayout? left, DataLayout? right) => ReferenceEquals(left, right) || (left?.Handle == right?.Handle);
+    public static bool operator ==(DataLayout? left, DataLayout? right) => ReferenceEquals(left, right) || left?.Handle == right?.Handle;
 
     public static bool operator !=(DataLayout? left, DataLayout? right) => !(left == right);
 
-    public override bool Equals(object? obj) => (obj is DataLayout other) && Equals(other);
+    public override bool Equals(object? obj) => obj is DataLayout other && Equals(other);
 
     public bool Equals(DataLayout? other) => this == other;
 
