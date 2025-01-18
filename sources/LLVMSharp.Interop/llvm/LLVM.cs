@@ -1270,6 +1270,10 @@ public static unsafe partial class LLVM
     [return: NativeTypeName("LLVMUseRef")]
     public static extern LLVMOpaqueUse* GetOperandUse([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val, [NativeTypeName("unsigned int")] uint Index);
 
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetArgument", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMValueRef")]
+    public static extern LLVMOpaqueValue* GetArgument([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val, [NativeTypeName("unsigned int")] uint Index);
+
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSetOperand", ExactSpelling = true)]
     public static extern void SetOperand([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* User, [NativeTypeName("unsigned int")] uint Index, [NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val);
 

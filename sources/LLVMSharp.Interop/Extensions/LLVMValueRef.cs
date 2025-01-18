@@ -1028,6 +1028,8 @@ public unsafe partial struct LLVMValueRef(IntPtr handle) : IEquatable<LLVMValueR
 
     public readonly LLVMUseRef GetOperandUse(uint Index) => LLVM.GetOperandUse(this, Index);
 
+    public readonly LLVMValueRef GetArgument(uint Index) => LLVM.GetArgument(this, Index);
+
     public readonly LLVMValueRef GetParam(uint Index) => LLVM.GetParam(this, Index);
 
     public readonly LLVMBasicBlockRef GetSuccessor(uint i) => LLVM.GetSuccessor(this, i);
