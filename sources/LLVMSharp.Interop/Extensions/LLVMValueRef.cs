@@ -1158,6 +1158,14 @@ public unsafe partial struct LLVMValueRef(IntPtr handle) : IEquatable<LLVMValueR
         return EnumerateBlocks().Aggregate(0, (acc, block) => acc + block.CountInstructions());
     }
 
+    public readonly IEnumerable<LLVMValueRef> GetOperands()
+    {
+        for (uint i = 0; i < OperandCount; i++)
+        {
+            yield return GetOperand(i);
+        }
+    }
+
     public readonly LLVMValueRef[] GetCallers()
     {
         if (IsAFunction == null)
