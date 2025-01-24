@@ -1967,12 +1967,18 @@ public static unsafe partial class LLVM
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMHasMetadata", ExactSpelling = true)]
     public static extern int HasMetadata([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val);
 
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMHasStringMetadata", ExactSpelling = true)]
+    public static extern bool HasStringMetadata([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val, [NativeTypeName("const char *")] sbyte* Kind);
+
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetMetadata", ExactSpelling = true)]
     [return: NativeTypeName("LLVMValueRef")]
     public static extern LLVMOpaqueValue* GetMetadata([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val, [NativeTypeName("unsigned int")] uint KindID);
 
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSetMetadata", ExactSpelling = true)]
     public static extern void SetMetadata([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val, [NativeTypeName("unsigned int")] uint KindID, [NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Node);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSetStringMetadata", ExactSpelling = true)]
+    public static extern void SetStringMetadata([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val, [NativeTypeName("const char *")] sbyte* Kind, [NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Node);
 
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMInstructionGetAllMetadataOtherThanDebugLoc", ExactSpelling = true)]
     public static extern LLVMValueMetadataEntry* InstructionGetAllMetadataOtherThanDebugLoc([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Instr, [NativeTypeName("size_t *")] nuint* NumEntries);
