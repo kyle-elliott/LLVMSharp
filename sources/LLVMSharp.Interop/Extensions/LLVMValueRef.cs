@@ -124,6 +124,12 @@ public unsafe partial struct LLVMValueRef(IntPtr handle) : IEquatable<LLVMValueR
 
     public readonly bool HasMetadata => (IsAInstruction != null) && LLVM.HasMetadata(this) != 0;
 
+    public readonly bool HasStringMetadata(string Kind)
+    {
+        using var marshaledKind = new MarshaledString(Kind.AsSpan());
+        return (IsAInstruction != null) && LLVM.HasStringMetadata(this, marshaledKind);
+    }
+
     public readonly bool HasPersonalityFn => (IsAFunction != null) && LLVM.HasPersonalityFn(this) != 0;
 
     public readonly bool HasUnnamedAddr
@@ -1062,6 +1068,14 @@ public unsafe partial struct LLVMValueRef(IntPtr handle) : IEquatable<LLVMValueR
     public readonly void SetInstrParamAlignment(LLVMAttributeIndex index, uint align) => LLVM.SetInstrParamAlignment(this, index, align);
 
     public readonly void SetMetadata(uint KindID, LLVMValueRef Node) => LLVM.SetMetadata(this, KindID, Node);
+
+    public readonly void SetStringMetadata(string KindID, LLVMValueRef Node) => SetStringMetadata(KindID.AsSpan(), Node);
+
+    public readonly void SetStringMetadata(ReadOnlySpan<char> KindID, LLVMValueRef Node)
+    {
+        using var marshaled = new MarshaledString(KindID);
+        LLVM.SetStringMetadata(this, marshaled, Node);
+    }
 
     public readonly void SetOperand(uint Index, LLVMValueRef Val) => LLVM.SetOperand(this, Index, Val);
 
