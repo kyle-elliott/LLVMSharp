@@ -144,4 +144,18 @@ public unsafe partial struct LLVMBasicBlockRef(IntPtr handle) : IEquatable<LLVMB
     {
         return EnumerateInstructions().Count();
     }
+
+    public readonly LLVMValueRef FirstNonPhiOrDbgInst
+    {
+        get
+        {
+            var inst = FirstInstruction;
+            while (inst != null && (inst.IsAPHINode != null || inst.IsADbgDeclareInst != null || inst.IsADbgInfoIntrinsic != null || inst.IsADbgLabelInst != null || inst.IsADbgVariableIntrinsic != null))
+            {
+                inst = inst.NextInstruction;
+            }
+
+            return inst;
+        }
+    }
 }

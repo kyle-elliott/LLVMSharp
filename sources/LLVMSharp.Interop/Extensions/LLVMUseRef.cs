@@ -8,6 +8,8 @@ public unsafe partial struct LLVMUseRef(IntPtr handle) : IEquatable<LLVMUseRef>
 {
     public IntPtr Handle = handle;
 
+    public readonly LLVMMemoryAccessRef IsAMemoryAccess => (Handle != IntPtr.Zero) ? LLVM.UseIsAMemoryAccess(this) : null;
+
     public static implicit operator LLVMUseRef(LLVMOpaqueUse* Use) => new LLVMUseRef((IntPtr)Use);
 
     public static implicit operator LLVMOpaqueUse*(LLVMUseRef Use) => (LLVMOpaqueUse*)Use.Handle;
