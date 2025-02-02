@@ -4986,4 +4986,205 @@ public static unsafe partial class LLVM
 
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMDisposePassBuilderOptions", ExactSpelling = true)]
     public static extern void DisposePassBuilderOptions([NativeTypeName("LLVMPassBuilderOptionsRef")] LLVMOpaquePassBuilderOptions* Options);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMUseIsAMemoryAccess", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemoryAccessRef")]
+    public static extern LLVMOpaqueMemoryAccess* UseIsAMemoryAccess([NativeTypeName("LLVMUseRef")] LLVMOpaqueUse* U);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemoryAccessGetBlock", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMBasicBlockRef")]
+    public static extern LLVMOpaqueBasicBlock* GetMemoryAccessBlock([NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemoryAccessIsUseOrDef", ExactSpelling = true)]
+    public static extern bool IsMemoryAccessUseOrDef([NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemoryAccessIsUse", ExactSpelling = true)]
+    public static extern bool IsMemoryAccessUse([NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemoryAccessIsDef", ExactSpelling = true)]
+    public static extern bool IsMemoryAccessDef([NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemoryAccessIsPhi", ExactSpelling = true)]
+    public static extern bool IsMemoryAccessPhi([NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemoryAccessGetMemoryInstruction", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMValueRef")]
+    public static extern LLVMOpaqueValue* GetMemoryAccessMemoryInst([NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemoryAccessGetDefiningAccess", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemoryAccessRef")]
+    public static extern LLVMOpaqueMemoryAccess* GetMemoryAccessDefiningAccess([NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMPrintMemoryAccessToString", ExactSpelling = true)]
+    [return: NativeTypeName("char *")]
+    public static extern sbyte* PrintMemoryAccessToString([NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemorySSAIsLiveOnEntryDef", ExactSpelling = true)]
+    public static extern bool IsLiveOnEntryDef([NativeTypeName("LLVMMemorySSARef")] LLVMOpaqueMemorySSA* MemorySSA, [NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemorySSAGetLiveOnEntryDef", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemoryAccessRef")]
+    public static extern LLVMOpaqueMemoryAccess* GetLiveOnEntryDef([NativeTypeName("LLVMMemorySSARef")] LLVMOpaqueMemorySSA* MemorySSA);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemorySSALocallyDominates", ExactSpelling = true)]
+    public static extern bool MemoryAccessesAreLocallyDominated([NativeTypeName("LLVMMemorySSARef")] LLVMOpaqueMemorySSA* MemorySSA, [NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* A, [NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* B);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemorySSADominates", ExactSpelling = true)]
+    public static extern bool MemoryAccessesAreDominated([NativeTypeName("LLVMMemorySSARef")] LLVMOpaqueMemorySSA* MemorySSA, [NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* A, [NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* B);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemorySSAGetInstructionMemoryAccess", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemoryAccessRef")]
+    public static extern LLVMOpaqueMemoryAccess* GetInstructionMemoryAccess([NativeTypeName("LLVMMemorySSARef")] LLVMOpaqueMemorySSA* MemorySSA, [NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Instruction);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemorySSAGetBlockMemoryAccess", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemoryAccessRef")]
+    public static extern LLVMOpaqueMemoryAccess* GetBlockMemoryAccess([NativeTypeName("LLVMMemorySSARef")] LLVMOpaqueMemorySSA* MemorySSA, [NativeTypeName("LLVMBasicBlockRef")] LLVMOpaqueBasicBlock* Block);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemorySSAGetWalker", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemorySSAWalkerRef")]
+    public static extern LLVMOpaqueMemorySSAWalker* GetMemorySSAWalker([NativeTypeName("LLVMMemorySSARef")] LLVMOpaqueMemorySSA* MemorySSA);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemorySSAGetSkipSelfWalker", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemorySSAWalkerRef")]
+    public static extern LLVMOpaqueMemorySSAWalker* GetMemorySSASkipSelfWalker([NativeTypeName("LLVMMemorySSARef")] LLVMOpaqueMemorySSA* MemorySSA);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetClobberingMemoryAccess", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemoryAccessRef")]
+    public static extern LLVMOpaqueMemoryAccess* GetClobberingMemoryAccess([NativeTypeName("LLVMMemorySSAWalkerRef")] LLVMOpaqueMemorySSAWalker* Walker, [NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetMemoryLocationPointer", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMValueRef")]
+    public static extern LLVMOpaqueValue* GetMemoryLocationPointer([NativeTypeName("LLVMMemoryLocationRef")] LLVMOpaqueMemoryLocation* MemLoc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetMemoryLocationSize", ExactSpelling = true)]
+    public static extern ulong GetMemoryLocationSize([NativeTypeName("LLVMMemoryLocationRef")] LLVMOpaqueMemoryLocation* MemLoc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemoryLocationGet", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemoryLocationRef")]
+    public static extern LLVMOpaqueMemoryLocation* MemoryLocationGet([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMMemoryLocationGetInstSize", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemoryLocationRef")]
+    public static extern LLVMOpaqueMemoryLocation* MemoryLocationGetInstSize([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val, [NativeTypeName("uint64_t")] ulong size);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMPrintMemoryLocationToString", ExactSpelling = true)]
+    [return: NativeTypeName("char *")]
+    public static extern sbyte* PrintMemoryLocationToString([NativeTypeName("LLVMMemoryLocationRef")] LLVMOpaqueMemoryLocation* MemLoc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMDisposeMemoryLocation", ExactSpelling = true)]
+    public static extern void DisposeMemoryLocation([NativeTypeName("LLVMMemoryLocationRef")] LLVMOpaqueMemoryLocation* MemLoc);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMAAResultsAlias", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMAliasResultRef")]
+    public static extern LLVMOpaqueAliasResult* AAResultsAlias([NativeTypeName("LLVMAAResultsRef")] LLVMOpaqueAAResults* AARes, [NativeTypeName("LLVMMemoryLocationRef")] LLVMOpaqueMemoryLocation* LocA, [NativeTypeName("LLVMMemoryLocationRef")] LLVMOpaqueMemoryLocation* LocB);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMAAResultGetKind", ExactSpelling = true)]]
+    public static extern int AAResultGetKind([NativeTypeName("LLVMAliasResultRef")] LLVMOpaqueAliasResult* AARes);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMAAResultHasOffset", ExactSpelling = true)]
+    public static extern bool AAResultHasOffset([NativeTypeName("LLVMAliasResultRef")] LLVMOpaqueAliasResult* AARes);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMAAResultGetOffset", ExactSpelling = true)]
+    public static extern int AAResultGetOffset([NativeTypeName("LLVMAliasResultRef")] LLVMOpaqueAliasResult* AARes);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMAAResultSetOffset", ExactSpelling = true)]
+    public static extern void AAResultSetOffset([NativeTypeName("LLVMAliasResultRef")] LLVMOpaqueAliasResult* AARes, int Offset);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMPrintAAResultToString", ExactSpelling = true)]
+    [return: NativeTypeName("char *")]
+    public static extern sbyte* PrintAAResultToString([NativeTypeName("LLVMAliasResultRef")] LLVMOpaqueAliasResult* AARes);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMScalarEvolutionGetSCEV", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* ScalarEvolutionGetSCEV([NativeTypeName("LLVMScalarEvolutionRef")] LLVMOpaqueScalarEvolution* SE, [NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* V);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVGetType", ExactSpelling = true)]
+    public static extern LLVMSCEVType GetSCEVType([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsConstant", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVConstant([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsVScale", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVVScale([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsTruncateExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVTruncateExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsZeroExtendExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVZeroExtendExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsSignExtendExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVSignExtendExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsAddExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVAddExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsMulExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVMulExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsUDivExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVUDivExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsAddRecExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVAddRecExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsUMaxExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVUMaxExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsSMaxExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVSMaxExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsUMinExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVUMinExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsSMinExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVSMinExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsSequentialUMinExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVSequentialUMinExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsPtrToIntExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVPtrToIntExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsUnknown", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVUnknown([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsCouldNotCompute", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVCouldNotCompute([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsNAryExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVNAryExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVIsCommutativeExpr", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* IsSCEVCommutativeExpr([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVGetNumOperands", ExactSpelling = true)]
+    public static extern ulong GetNumSCEVOperands([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVGetOperand", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMSCEVRef")]
+    public static extern LLVMOpaqueSCEV* GetSCEVOperand([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S, [NativeTypeName("uint64_t")] ulong i);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSCEVGetConstValue", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMValueRef")]
+    public static extern LLVMOpaqueValue* SCEVConstGetValue([NativeTypeName("LLVMSCEVRef")] LLVMOpaqueSCEV* S);
 }
