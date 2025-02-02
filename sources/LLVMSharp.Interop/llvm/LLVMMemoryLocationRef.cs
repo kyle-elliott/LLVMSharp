@@ -11,7 +11,7 @@ public unsafe partial struct LLVMMemoryLocationRef(IntPtr handle) : IDisposable,
 
     public readonly LLVMValueRef Pointer => (Handle != IntPtr.Zero) ? LLVM.GetMemoryLocationPointer(this) : null;
 
-    public readonly ulong Size => (Handle != IntPtr.Zero) ? LLVM.GetMemoryLocationSize(this) : 0;
+    public readonly LLVMLocationSize Size => (Handle != IntPtr.Zero) ? LLVMLocationSize.Raw(LLVM.GetMemoryLocationSizeRaw(this)) : default;
 
     public static LLVMMemoryLocationRef Get(LLVMValueRef inst)
     {
