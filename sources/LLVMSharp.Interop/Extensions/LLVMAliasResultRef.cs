@@ -8,23 +8,23 @@ public unsafe partial struct LLVMAliasResultRef(IntPtr handle) : IEquatable<LLVM
 {
     public IntPtr Handle = handle;
 
-    public readonly LLVMAliasResultKind Kind => (Handle != IntPtr.Zero) ? (LLVMAliasResultKind)LLVM.AAResultGetKind(this) : LLVMAliasResultKind.LLVMAAResultInvalid;
+    public readonly LLVMAliasResultKind Kind => (Handle != IntPtr.Zero) ? LLVM.AliasResultGetKind(this) : LLVMAliasResultKind.LLVMAAResultInvalid;
 
-    public readonly bool HasOffset => (Handle != IntPtr.Zero) && LLVM.AAResultHasOffset(this);
+    public readonly bool HasOffset => (Handle != IntPtr.Zero) && LLVM.AliasResultHasOffset(this);
 
     // Generate get/set for Offset
     public readonly int Offset
     {
         get
         {
-            return (Handle != IntPtr.Zero && HasOffset) ? LLVM.AAResultGetOffset(this) : 0;
+            return (Handle != IntPtr.Zero && HasOffset) ? LLVM.AliasResultGetOffset(this) : 0;
         }
 
         set
         {
             if (Handle != IntPtr.Zero)
             {
-                LLVM.AAResultSetOffset(this, value);
+                LLVM.AliasResultSetOffset(this, value);
             }
         }
     }

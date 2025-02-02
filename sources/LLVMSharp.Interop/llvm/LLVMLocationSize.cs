@@ -24,7 +24,7 @@ public struct LLVMLocationSize : IEquatable<LLVMLocationSize>
 
     // Hack to support implicit construction. This should disappear when the
     // public LocationSize ctor goes away.
-    private enum DirectConstruction { Direct };
+    private enum DirectConstruction { Direct }
 
     private LLVMLocationSize(ulong raw, DirectConstruction _)
     {
@@ -40,6 +40,8 @@ public struct LLVMLocationSize : IEquatable<LLVMLocationSize>
     {
         _value = raw > (ulong)Map.MaxValue ? (ulong)Map.AfterPointer : raw;
     }
+
+    public static LLVMLocationSize Raw(ulong raw) => new(raw, DirectConstruction.Direct);
 
     public static LLVMLocationSize Precise(ulong value) => new(value, false);
 
