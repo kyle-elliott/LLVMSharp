@@ -22,7 +22,6 @@ public enum LLVMTypeKind
     LLVMPointerTypeKind,
     LLVMVectorTypeKind,
     LLVMMetadataTypeKind,
-    LLVMX86_MMXTypeKind,
     LLVMTokenTypeKind,
     LLVMScalableVectorTypeKind,
     LLVMBFloatTypeKind,

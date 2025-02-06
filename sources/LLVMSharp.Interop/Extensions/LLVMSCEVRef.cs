@@ -67,4 +67,20 @@ public unsafe partial struct LLVMSCEVRef(IntPtr handle) : IEquatable<LLVMSCEVRef
     public readonly bool Equals(LLVMSCEVRef other) => this == other;
 
     public override readonly int GetHashCode() => Handle.GetHashCode();
+
+    public readonly string PrintToString()
+    {
+        var pStr = LLVM.PrintSCEVToString(this);
+
+        if (pStr == null)
+        {
+            return string.Empty;
+        }
+
+        var result = SpanExtensions.AsString(pStr);
+        LLVM.DisposeMessage(pStr);
+        return result;
+    }
+
+    public override readonly string ToString() => (Handle != IntPtr.Zero) ? PrintToString() : string.Empty;
 }

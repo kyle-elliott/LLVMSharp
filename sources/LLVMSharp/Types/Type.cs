@@ -120,13 +120,6 @@ public class Type : IEquatable<Type>
         return c.GetOrCreate(handle);
     }
 
-    public static Type GetX86_MMXTy(LLVMContext c)
-    {
-        ArgumentNullException.ThrowIfNull(c);
-        var handle = c.Handle.X86MMXType;
-        return c.GetOrCreate(handle);
-    }
-
     public override bool Equals(object? obj) => obj is Type other && Equals(other);
 
     public bool Equals(Type? other) => this == other;
@@ -152,7 +145,6 @@ public class Type : IEquatable<Type>
         LLVMTypeKind.LLVMPointerTypeKind => new PointerType(handle),
         LLVMTypeKind.LLVMVectorTypeKind => new VectorType(handle),
         LLVMTypeKind.LLVMMetadataTypeKind => new Type(handle, LLVMTypeKind.LLVMMetadataTypeKind),
-        LLVMTypeKind.LLVMX86_MMXTypeKind => new Type(handle, LLVMTypeKind.LLVMX86_MMXTypeKind),
         LLVMTypeKind.LLVMTokenTypeKind => new Type(handle, LLVMTypeKind.LLVMTokenTypeKind),
         _ => new Type(handle, handle.Kind),
     };

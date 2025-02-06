@@ -422,6 +422,14 @@ public unsafe partial struct LLVMBuilderRef(IntPtr handle) : IDisposable, IEquat
         return LLVM.BuildLShr(this, LHS, RHS, marshaledName);
     }
 
+    public readonly LLVMValueRef BuildExactLShr(LLVMValueRef LHS, LLVMValueRef RHS, string Name = "") => BuildExactLShr(LHS, RHS, Name.AsSpan());
+
+    public readonly LLVMValueRef BuildExactLShr(LLVMValueRef LHS, LLVMValueRef RHS, ReadOnlySpan<char> Name)
+    {
+        using var marshaledName = new MarshaledString(Name);
+        return LLVM.BuildExactLShr(this, LHS, RHS, marshaledName);
+    }
+
     public readonly LLVMValueRef BuildMalloc(LLVMTypeRef Ty, string Name = "") => BuildMalloc(Ty, Name.AsSpan());
 
     public readonly LLVMValueRef BuildMalloc(LLVMTypeRef Ty, ReadOnlySpan<char> Name)
@@ -516,6 +524,14 @@ public unsafe partial struct LLVMBuilderRef(IntPtr handle) : IDisposable, IEquat
     {
         using var marshaledName = new MarshaledString(Name);
         return LLVM.BuildNUWSub(this, LHS, RHS, marshaledName);
+    }
+
+    public readonly LLVMValueRef BuildNUWShl(LLVMValueRef LHS, LLVMValueRef RHS, string Name = "") => BuildNUWShl(LHS, RHS, Name.AsSpan());
+
+    public readonly LLVMValueRef BuildNUWShl(LLVMValueRef LHS, LLVMValueRef RHS, ReadOnlySpan<char> Name)
+    {
+        using var marshaledName = new MarshaledString(Name);
+        return LLVM.BuildNUWShl(this, LHS, RHS, marshaledName);
     }
 
     public readonly LLVMValueRef BuildOr(LLVMValueRef LHS, LLVMValueRef RHS, string Name = "") => BuildOr(LHS, RHS, Name.AsSpan());
