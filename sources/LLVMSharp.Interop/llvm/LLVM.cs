@@ -1950,6 +1950,10 @@ public static unsafe partial class LLVM
     [return: NativeTypeName("LLVMValueRef")]
     public static extern LLVMOpaqueValue* MDNode([NativeTypeName("LLVMValueRef *")] LLVMOpaqueValue** Vals, [NativeTypeName("unsigned int")] uint Count);
 
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMCloneInstructionsChain", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMValueRef")]
+    public static extern LLVMOpaqueValue* CloneInstructionsChain([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Instruction, [NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* InsertionPoint);
+
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMCreateOperandBundle", ExactSpelling = true)]
     [return: NativeTypeName("LLVMOperandBundleRef")]
     public static extern LLVMOpaqueOperandBundle* CreateOperandBundle([NativeTypeName("const char *")] sbyte* Tag, [NativeTypeName("size_t")] nuint TagLen, [NativeTypeName("LLVMValueRef *")] LLVMOpaqueValue** Args, [NativeTypeName("unsigned int")] uint NumArgs);
