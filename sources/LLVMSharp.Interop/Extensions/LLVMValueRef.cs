@@ -818,6 +818,8 @@ public unsafe partial struct LLVMValueRef(IntPtr handle) : IEquatable<LLVMValueR
         }
     }
 
+    public static LLVMValueRef CloneInstructionsChain(LLVMValueRef Instruction, LLVMValueRef InsertionPoint) => LLVM.CloneInstructionsChain(Instruction, InsertionPoint);
+
     public readonly void AddCase(LLVMValueRef OnVal, LLVMBasicBlockRef Dest) => LLVM.AddCase(this, OnVal, Dest);
 
     public readonly void AddClause(LLVMValueRef ClauseVal) => LLVM.AddClause(this, ClauseVal);
