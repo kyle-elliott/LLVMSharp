@@ -10,6 +10,9 @@ public unsafe partial struct LLVMMemorySSAWalkerRef(IntPtr handle) : IEquatable<
 
     public readonly LLVMMemoryAccessRef GetClobberingMemoryAccess(LLVMMemoryAccessRef access) => LLVM.GetClobberingMemoryAccess(this, access);
 
+    public readonly LLVMMemoryAccessRef GetClobberingMemoryAccess(LLVMMemoryAccessRef access,
+        LLVMMemoryLocationRef location) => LLVM.GetClobberingMemoryAccessWithLocation(this, access, location);
+
     public static implicit operator LLVMMemorySSAWalkerRef(LLVMOpaqueMemorySSAWalker* value) => new LLVMMemorySSAWalkerRef((IntPtr)value);
 
     public static implicit operator LLVMOpaqueMemorySSAWalker*(LLVMMemorySSAWalkerRef value) => (LLVMOpaqueMemorySSAWalker*)value.Handle;

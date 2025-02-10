@@ -5068,6 +5068,10 @@ public static unsafe partial class LLVM
     [return: NativeTypeName("LLVMMemoryAccessRef")]
     public static extern LLVMOpaqueMemoryAccess* GetClobberingMemoryAccess([NativeTypeName("LLVMMemorySSAWalkerRef")] LLVMOpaqueMemorySSAWalker* Walker, [NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc);
 
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetClobberingMemoryAccessWithLocation", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMMemoryAccessRef")]
+    public static extern LLVMOpaqueMemoryAccess* GetClobberingMemoryAccessWithLocation([NativeTypeName("LLVMMemorySSAWalkerRef")] LLVMOpaqueMemorySSAWalker* Walker, [NativeTypeName("LLVMMemoryAccessRef")] LLVMOpaqueMemoryAccess* MemAcc, [NativeTypeName("LLVMMemoryLocationRef")] LLVMOpaqueMemoryLocation* Loc);
+
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetMemoryLocationPointer", ExactSpelling = true)]
     [return: NativeTypeName("LLVMValueRef")]
     public static extern LLVMOpaqueValue* GetMemoryLocationPointer([NativeTypeName("LLVMMemoryLocationRef")] LLVMOpaqueMemoryLocation* MemLoc);
