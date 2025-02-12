@@ -1282,6 +1282,10 @@ public static unsafe partial class LLVM
     [return: NativeTypeName("LLVMValueRef")]
     public static extern LLVMOpaqueValue* GetArgument([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val, [NativeTypeName("unsigned int")] uint Index);
 
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetArgumentIndex", ExactSpelling = true)]
+    [return: NativeTypeName("uint32_t")]
+    public static extern uint GetArgumentIndex([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val);
+
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMSetOperand", ExactSpelling = true)]
     public static extern void SetOperand([NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* User, [NativeTypeName("unsigned int")] uint Index, [NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* Val);
 

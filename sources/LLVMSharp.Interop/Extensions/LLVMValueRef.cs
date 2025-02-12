@@ -1040,6 +1040,8 @@ public unsafe partial struct LLVMValueRef(IntPtr handle) : IEquatable<LLVMValueR
 
     public readonly LLVMValueRef GetArgument(uint Index) => LLVM.GetArgument(this, Index);
 
+    public readonly uint GetArgumentIndex() => (Handle != IntPtr.Zero && IsAArgument != null) ? LLVM.GetArgumentIndex(this) : uint.MaxValue;
+
     public readonly LLVMValueRef GetParam(uint Index) => LLVM.GetParam(this, Index);
 
     public readonly LLVMBasicBlockRef GetSuccessor(uint i) => LLVM.GetSuccessor(this, i);
