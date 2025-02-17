@@ -10,8 +10,6 @@ public unsafe partial struct LLVMPointerAnalysisRef(IntPtr handle) : IEquatable<
 
     public LLVMLiftedPointerKind GetPointerKind(LLVMValueRef value) => (LLVMLiftedPointerKind)LLVM.GetLiftedPointerKind(this, value);
 
-    public void Reset() => LLVM.ResetPointerCache(this);
-
     public static implicit operator LLVMPointerAnalysisRef(LLVMOpaquePointerAnalysis* value) => new LLVMPointerAnalysisRef((IntPtr)value);
 
     public static implicit operator LLVMOpaquePointerAnalysis*(LLVMPointerAnalysisRef value) => (LLVMOpaquePointerAnalysis*)value.Handle;
