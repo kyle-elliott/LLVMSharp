@@ -5227,7 +5227,4 @@ public static unsafe partial class LLVM
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetLiftedPointerKind", ExactSpelling = true)]
     [return: NativeTypeName("int32_t")]
     public static extern int GetLiftedPointerKind([NativeTypeName("LLVMPointerAnalysisRef")] LLVMOpaquePointerAnalysis* PA, [NativeTypeName("LLVMValueRef")] LLVMOpaqueValue* V);
-
-    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMResetPointerCache", ExactSpelling = true)]
-    public static extern void ResetPointerCache([NativeTypeName("LLVMPointerAnalysisRef")] LLVMOpaquePointerAnalysis* PA);
 }
