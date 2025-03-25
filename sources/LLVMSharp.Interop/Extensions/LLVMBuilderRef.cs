@@ -108,14 +108,6 @@ public unsafe partial struct LLVMBuilderRef(IntPtr handle) : IDisposable, IEquat
 
     public readonly LLVMValueRef BuildBinOp(LLVMOpcode Op, LLVMValueRef LHS, LLVMValueRef RHS, ReadOnlySpan<char> Name)
     {
-        if (LHS.TypeOf.Kind == LLVMTypeKind.LLVMIntegerTypeKind && RHS.TypeOf.Kind == LLVMTypeKind.LLVMIntegerTypeKind)
-        {
-            if (LHS.TypeOf.IntWidth != RHS.TypeOf.IntWidth)
-            {
-                Debugger.Break();
-            }
-        }
-
         using var marshaledName = new MarshaledString(Name);
         return LLVM.BuildBinOp(this, Op, LHS, RHS, marshaledName);
     }
