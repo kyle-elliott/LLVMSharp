@@ -45,9 +45,31 @@ public unsafe partial struct LLVMModuleRef(IntPtr handle) : IDisposable, IEquata
 
     public readonly LLVMValueRef FirstGlobal => (Handle != IntPtr.Zero) ? LLVM.GetFirstGlobal(this) : default;
 
+    public readonly LLVMValueRef FirstGlobalAlias => (Handle != IntPtr.Zero) ? LLVM.GetFirstGlobalAlias(this) : default;
+
+    public readonly LLVMValueRef FirstGlobalIFunc => (Handle != IntPtr.Zero) ? LLVM.GetFirstGlobalIFunc(this) : default;
+
+    public readonly LLVMNamedMDNodeRef FirstNamedMetadata => (Handle != IntPtr.Zero) ? LLVM.GetFirstNamedMetadata(this) : default;
+
+    public readonly LLVMModuleFunctionsEnumerable Functions => new(this);
+
+    public readonly LLVMModuleGlobalsEnumerable Globals => new(this);
+
+    public readonly LLVMModuleGlobalAliasesEnumerable GlobalAliases => new(this);
+
+    public readonly LLVMModuleGlobalIFuncsEnumerable GlobalIFuncs => new(this);
+
     public readonly LLVMValueRef LastFunction => (Handle != IntPtr.Zero) ? LLVM.GetLastFunction(this) : default;
 
     public readonly LLVMValueRef LastGlobal => (Handle != IntPtr.Zero) ? LLVM.GetLastGlobal(this) : default;
+
+    public readonly LLVMValueRef LastGlobalAlias => (Handle != IntPtr.Zero) ? LLVM.GetLastGlobalAlias(this) : default;
+
+    public readonly LLVMValueRef LastGlobalIFunc => (Handle != IntPtr.Zero) ? LLVM.GetLastGlobalIFunc(this) : default;
+
+    public readonly LLVMNamedMDNodeRef LastNamedMetadata => (Handle != IntPtr.Zero) ? LLVM.GetLastNamedMetadata(this) : default;
+
+    public readonly LLVMModuleNamedMetadataEnumerable NamedMetadata => new(this);
 
     public readonly string Target
     {
@@ -487,26 +509,6 @@ public unsafe partial struct LLVMModuleRef(IntPtr handle) : IDisposable, IEquata
         intrinsic.Linkage = LLVMLinkage.LLVMExternalLinkage;
 
         return intrinsic;
-    }
-
-    public readonly IEnumerable<LLVMValueRef> EnumerateFunctions()
-    {
-        // Get the first function within the module.
-        var next = FirstFunction;
-        while (true)
-        {
-            // Exit if there are no more elements to yield.
-            if (next == null)
-            {
-                yield break;
-            }
-
-            // Yield the next function.
-            yield return next;
-
-            // Set up the next function for iteration.
-            next = next.NextFunction;
-        }
     }
 
     public readonly int LinkModules(LLVMModuleRef other)
