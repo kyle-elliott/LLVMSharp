@@ -27,6 +27,14 @@ public unsafe partial struct LLVMBasicBlockRef(IntPtr handle) : IEquatable<LLVMB
 
     public readonly LLVMValueRef FirstInstruction => (Handle != IntPtr.Zero) ? LLVM.GetFirstInstruction(this) : default;
 
+    public readonly LLVMValueRef FirstNonPhiInstruction => (Handle != IntPtr.Zero) ? LLVM.GetFirstNonPhiInstruction(this) : default;
+
+    public readonly LLVMValueRef FirstNonPhiOrDbgInstruction => (Handle != IntPtr.Zero) ? LLVM.GetFirstNonPhiOrDbgInstruction(this) : default;
+
+    public readonly LLVMValueRef FirstNonPhiOrDbgOrAllocaInstruction => (Handle != IntPtr.Zero) ? LLVM.GetFirstNonPhiOrDbgOrAllocaInstruction(this) : default;
+
+    public readonly LLVMValueRef FirstNonPhiOrDbgOrLifetimeInstruction => (Handle != IntPtr.Zero) ? LLVM.GetFirstNonPhiOrDbgOrLifetimeInstruction(this) : default;
+
     public readonly LLVMBasicBlockInstructionsEnumerable Instructions => new LLVMBasicBlockInstructionsEnumerable(this);
 
     public readonly LLVMValueRef LastInstruction => (Handle != IntPtr.Zero) ? LLVM.GetLastInstruction(this) : default;

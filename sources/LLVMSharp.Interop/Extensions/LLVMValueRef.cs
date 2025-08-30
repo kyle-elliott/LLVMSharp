@@ -84,6 +84,8 @@ public unsafe partial struct LLVMValueRef(IntPtr handle) : IEquatable<LLVMValueR
 
     public readonly LLVMUseRef FirstUse => (Handle != IntPtr.Zero) ? LLVM.GetFirstUse(this) : default;
 
+    public readonly LLVMFunctionBasicBlockEnumerable Blocks => (IsAFunction != null) ? new LLVMFunctionBasicBlockEnumerable(this) : default;
+
     public readonly uint FunctionCallConv
     {
         get

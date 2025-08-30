@@ -2070,6 +2070,22 @@ public static unsafe partial class LLVM
     [return: NativeTypeName("LLVMValueRef")]
     public static extern LLVMOpaqueValue* GetFirstInstruction([NativeTypeName("LLVMBasicBlockRef")] LLVMOpaqueBasicBlock* BB);
 
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetFirstNonPHIInstruction", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMValueRef")]
+    public static extern LLVMOpaqueValue* GetFirstNonPhiInstruction([NativeTypeName("LLVMBasicBlockRef")] LLVMOpaqueBasicBlock* BB);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetFirstNonPHIOrDbgInstruction", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMValueRef")]
+    public static extern LLVMOpaqueValue* GetFirstNonPhiOrDbgInstruction([NativeTypeName("LLVMBasicBlockRef")] LLVMOpaqueBasicBlock* BB);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetFirstNonDbgOrDbgOrAllocaInstruction", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMValueRef")]
+    public static extern LLVMOpaqueValue* GetFirstNonPhiOrDbgOrAllocaInstruction([NativeTypeName("LLVMBasicBlockRef")] LLVMOpaqueBasicBlock* BB);
+
+    [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetFirstNonDbgOrDbgOrLifetimeInstruction", ExactSpelling = true)]
+    [return: NativeTypeName("LLVMValueRef")]
+    public static extern LLVMOpaqueValue* GetFirstNonPhiOrDbgOrLifetimeInstruction([NativeTypeName("LLVMBasicBlockRef")] LLVMOpaqueBasicBlock* BB);
+
     [DllImport("VMPre.Interop", CallingConvention = CallingConvention.Cdecl, EntryPoint = "FfiLLVMGetLastInstruction", ExactSpelling = true)]
     [return: NativeTypeName("LLVMValueRef")]
     public static extern LLVMOpaqueValue* GetLastInstruction([NativeTypeName("LLVMBasicBlockRef")] LLVMOpaqueBasicBlock* BB);
